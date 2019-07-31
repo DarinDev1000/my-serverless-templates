@@ -10,18 +10,21 @@ plugins:
 provider:
   name: aws
   runtime: nodejs10.x
+  region: us-east-1
+  stage: prod
+  profile: default
 
 custom:
   alexa:
     # Step 1: Run `sls alexa auth` to authenticate
-    # Step 2: Run `sls alexa create --name "Serverless Alexa Typescript" --locale en-GB --type custom` to create a new skill
+    # Step 2: Run `sls alexa create --name "Serverless Alexa Typescript" --locale en-US --type custom` to create a new skill
     skills:
       # Step 3: Paste the skill id returned by the create command here:
       - id: amzn1.ask.skill.xxxx-xxxx-xxxx-xxxx-xxxx
         manifest:
           publishingInformation:
             locales:
-              en-GB:
+              en-US:
                 name: Serverless Alexa Typescript
           apis:
             custom:
@@ -34,7 +37,7 @@ custom:
                 # Step 8: Enable the skill in the Alexa app to start testing.
           manifestVersion: '1.0'
         models:
-          en-GB:
+          en-US:
             interactionModel:
               languageModel:
                 invocationName: serverless typescript

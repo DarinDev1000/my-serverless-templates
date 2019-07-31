@@ -4,7 +4,12 @@
   "description": "Alexa example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "echo 'sls alexa update' && sls alexa update && echo 'sls alexa build' && sls alexa build && echo 'sls deploy' && sls deploy && echo 'DONE'",
+    "update-alexa": "echo 'sls alexa update' && sls alexa update && echo 'sls alexa build' && sls alexa build && echo 'DONE'",
+    "update-lambda": "echo 'sls deploy' && sls deploy && echo 'DONE'",
+    "logs": "sls logs -f alexa",
+    "pretty": "prettier --write '*.{ts,js,yml,json}'"
   },
   "dependencies": {
     "ask-sdk": "^2.3.0",
@@ -12,6 +17,8 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
+    "pre-git": "^3.17.1",
+    "prettier": "^1.18.2",
     "serverless-alexa-skills": "^0.1.0",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
@@ -19,5 +26,25 @@
     "webpack": "^4.29.0"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
-  "license": "MIT"
+  "license": "MIT",
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": [
+        "npm run pretty"
+      ],
+      "pre-push": [
+        "npm run pretty"
+      ],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
+  },
+  "prettier": {
+    "printWidth": 180,
+    "arrowParens": "always"
+  }
 }
