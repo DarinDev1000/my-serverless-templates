@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "sls deploy",
     "logs": "sls logs -f alexa",
-    "pretty": "prettier --write '*.{ts,js,yml,json}'"
+    "pretty": "prettier --write '*.{ts,js,yml,json}' && prettier --write '**/*.{ts,js,yml,json}'"
   },
   "dependencies": {
     "source-map-support": "^0.5.10"
@@ -15,7 +15,6 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
     "@types/node": "^10.12.18",
-    "pre-git": "^3.17.1",
     "prettier": "^1.18.2",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
@@ -24,22 +23,6 @@
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT",
-  "release": {
-    "analyzeCommits": "simple-commit-message"
-  },
-  "config": {
-    "pre-git": {
-      "pre-commit": [
-        "npm run pretty"
-      ],
-      "pre-push": [
-        "npm run pretty"
-      ],
-      "post-commit": [],
-      "post-checkout": [],
-      "post-merge": []
-    }
-  },
   "prettier": {
     "printWidth": 180,
     "arrowParens": "always"
